@@ -1,4 +1,5 @@
 /target
 /Cargo.lock
-/www/node_modules/
+.history
+www/node_modules
 .idea
