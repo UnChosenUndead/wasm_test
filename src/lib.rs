@@ -1,17 +1,26 @@
 use wasm_bindgen::prelude::*;
 
+extern crate wee_alloc;
+// Use `wee_alloc` as the global allocator.
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
 #[wasm_bindgen]
-extern {
-    pub fn alert(s: &str);
+pub struct World {
+    pub width: usize
 }
 
 #[wasm_bindgen]
-pub fn greet(name: &str) {
-    alert(&format!("Hello, {}!", name));
-}
+impl World {
+    pub fn new(width: usize) -> Self {
+        Self {
+            width,
+        }
+    }
 
-#[wasm_bindgen]
-pub fn tester(name: &str) -> String {
-    return "Hello".to_owned() + name
+    pub fn default() -> Self {
+        Self {
+            width: 8
+        }
+    }
 }
-//wasm-pack build --target web
